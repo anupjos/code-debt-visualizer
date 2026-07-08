@@ -43,7 +43,7 @@ export class DebtDecorationProvider implements vscode.FileDecorationProvider {
     return {
       badge: BADGE[file.level],
       color: new vscode.ThemeColor(COLOR[file.level]),
-      tooltip: `${TOOLTIP_PREFIX[file.level]} — score ${scorePct}%`,
+      tooltip: `${TOOLTIP_PREFIX[file.level]} - score ${scorePct}%`,
       propagate: false
     };
   }

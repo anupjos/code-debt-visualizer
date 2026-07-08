@@ -48,7 +48,7 @@ export async function activate(context: vscode.ExtensionContext) {
       applyResult(result);
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
-      vscode.window.showWarningMessage(`Code Debt Visualizer: analysis failed — ${msg}`);
+      vscode.window.showWarningMessage(`Code Debt Visualizer: analysis failed - ${msg}`);
     }
   };
 
