@@ -1,0 +1,131 @@
+{
+  "name": "code-debt-visualizer",
+  "displayName": "Code Debt Visualizer",
+  "description": "Visual technical-debt heatmap for your workspace, computed from Git history and file stats.",
+  "version": "0.1.0",
+  "publisher": "anupjos",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anupjos/code-debt-visualizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anupjos/code-debt-visualizer/issues"
+  },
+  "homepage": "https://github.com/anupjos/code-debt-visualizer#readme",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization",
+    "SCM Providers",
+    "Other"
+  ],
+  "keywords": [
+    "technical debt",
+    "code quality",
+    "heatmap",
+    "git",
+    "refactoring"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeDebtVisualizer",
+          "title": "Code Debt",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codeDebtVisualizer": [
+        {
+          "id": "codeDebtVisualizerView",
+          "name": "Debt Heatmap",
+          "icon": "media/icon.svg",
+          "contextualTitle": "Code Debt Visualizer"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "codeDebtVisualizerView",
+        "contents": "No workspace open. Open a folder with a Git repository to see the debt heatmap."
+      }
+    ],
+    "commands": [
+      {
+        "command": "codeDebtVisualizer.refresh",
+        "title": "Code Debt: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "codeDebtVisualizer.openView",
+        "title": "Code Debt: Open Heatmap Panel"
+      },
+      {
+        "command": "codeDebtVisualizer.showAll",
+        "title": "Code Debt: Show All Files"
+      },
+      {
+        "command": "codeDebtVisualizer.showTop",
+        "title": "Code Debt: Show Top 50 Only"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "codeDebtVisualizer.refresh",
+          "when": "view == codeDebtVisualizerView",
+          "group": "navigation"
+        }
+      ]
+    },
+    "colors": [
+      {
+        "id": "codeDebtVisualizer.low",
+        "description": "Low-debt (green) badge color",
+        "defaults": {
+          "dark": "#3fb950",
+          "light": "#1a7f37",
+          "highContrast": "#3fb950"
+        }
+      },
+      {
+        "id": "codeDebtVisualizer.medium",
+        "description": "Medium-debt (amber) badge color",
+        "defaults": {
+          "dark": "#d29922",
+          "light": "#9a6700",
+          "highContrast": "#d29922"
+        }
+      },
+      {
+        "id": "codeDebtVisualizer.high",
+        "description": "High-debt (red) badge color",
+        "defaults": {
+          "dark": "#f85149",
+          "light": "#cf222e",
+          "highContrast": "#f85149"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3",
+    "@vscode/vsce": "^2.24.0"
+  }
+}
